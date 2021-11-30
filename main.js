@@ -60,9 +60,10 @@ async function execute(message, serverQueue) {
     let song;
     if (ytdl.validateURL(args[1])) {
         const songInfo = await ytdl.getInfo(args[1]);
+        console.log(songInfo)
         song = {
-            title: songInfo.title,
-            url: songInfo.video_url
+            title: songInfo.videoDetails.title,
+            url: songInfo.videoDetails.video_url
         };
     } else {
         const {videos} = await yts(args.slice(1).join(" "));
